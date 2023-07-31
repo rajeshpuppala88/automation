@@ -12,12 +12,10 @@ public class BrowserTest {
 		driver.get("https://www.google.com");
 		driver.findElement(By.id("//input[@name'APjFqb']")).sendKeys("hello world java program");
 		Thread.sleep(5000);
-		
 		driver.close();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-
 }
