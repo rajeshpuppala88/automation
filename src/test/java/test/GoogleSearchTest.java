@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import pageobjects.GoogleSearchPage;
 
@@ -17,28 +18,30 @@ public class GoogleSearchTest {
 
 	}
 	public static void googleSearch() throws InterruptedException {
-			driver = new ChromeDriver();
-			 
-			/*
-			 * WebDriverManager.firefoxdriver().setup(); 
-			 * WebDriver driver = new FirefoxDriver();
-			 */
-			 driver.get("https://www.google.com/");
-			/*
-			 * driver.findElement(By.id("APjFqb")).sendKeys("hello world java");
-			 * driver.findElement(By.name("btnK")).click();
-			 */
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("--remote-allow-origins=*");
+		driver = new ChromeDriver(options);
+		 
+		/*
+		 * WebDriverManager.firefoxdriver().setup(); 
+		 * WebDriver driver = new FirefoxDriver();
+		 */
+		 driver.get("https://www.google.com/");
+		/*
+		 * driver.findElement(By.id("APjFqb")).sendKeys("hello world java");
+		 * driver.findElement(By.name("btnK")).click();
+		 */
 //			 driver.findElement(By.xpath("//textarea[@name='q']")).sendKeys("hello world java");
-			 GoogleSearchPage.textbox_search(driver).sendKeys("hello world java");
-			 
+		 GoogleSearchPage.textbox_search(driver).sendKeys("hello world java");
+		 
 //			 driver.findElement(By.name("btnK")).click();
 //			 driver.findElement(By.name("btnK")).sendKeys(Keys.RETURN);
-			 GoogleSearchPage.textbox_search(driver).sendKeys(Keys.RETURN);
-			 
-			 List<WebElement> webEleList = driver.findElements(By.xpath("//input"));
-			 System.out.println("count of webelements : "+webEleList.size());
-			 Thread.sleep(5000);
-			 driver.close();
-			 driver.quit();
+		 GoogleSearchPage.button_search(driver).sendKeys(Keys.RETURN);
+		 
+		 List<WebElement> webEleList = driver.findElements(By.xpath("//input"));
+		 System.out.println("count of webelements : "+webEleList.size());
+		 Thread.sleep(5000);
+		 driver.close();
+		 driver.quit();
 	}
 }
